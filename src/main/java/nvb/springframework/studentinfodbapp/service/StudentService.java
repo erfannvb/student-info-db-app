@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,4 +20,11 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public void addNewStudent(Student student) {
+        Optional<Student> studentOptional = studentRepository.findStudentByName(student.getName());
+        if (studentOptional.isPresent()) {
+            throw new IllegalStateException("Email is taken.");
+        }
+        studentRepository.save(student);
+    }
 }
