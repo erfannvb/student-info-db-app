@@ -20,6 +20,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public Optional<Student> getStudentById(Long id) {
+        return studentRepository.findById(id);
+    }
+
     public void addNewStudent(Student student) {
         Optional<Student> studentOptional = studentRepository.findStudentByName(student.getName());
         if (studentOptional.isPresent()) {

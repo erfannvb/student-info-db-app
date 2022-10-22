@@ -6,6 +6,7 @@ import nvb.springframework.studentinfodbapp.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/student")
@@ -17,6 +18,11 @@ public class StudentController {
     @GetMapping
     public List<Student> getStudents() {
         return studentService.getStudents();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Student> getStudentById(@PathVariable("id") Long id) {
+        return studentService.getStudentById(id);
     }
 
     @PostMapping
